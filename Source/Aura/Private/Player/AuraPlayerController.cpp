@@ -4,6 +4,7 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -37,6 +38,74 @@ void AAuraPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 }
 
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+	
+	LastActor = ThisActor;
+	ThisActor = CursorHit.GetActor();
+
+	/** *Line trace from cursor. Several scenarios:
+	 * Last actor is null and this actor is null
+	 *      - Do Nothing
+	 * LastActor is null but ThisActor is valid
+	 *      - Highlight ThisActor
+	 * LastActor is valid and ThisActor is null
+	 *      - Unhighlight LastActor
+	 * Both are valid, but LastActor is not equal to ThisActor
+	 *      - Unhighlight LastActor, Highlight ThisActor
+	 * Both are valid, and are equal
+	 *      - Do Nothing
+	 * **/
+
+	if (LastActor == nullptr)
+	{
+		if (ThisActor != nullptr)
+		{
+			// Case B
+			ThisActor->HighlightActor();
+			
+			
+		}
+		else
+		{
+			// Case A - both are null, do nothing
+		}
+	}
+	else // Last Actor is valid
+	{
+		if (ThisActor == nullptr)
+		{
+			// Case C
+			LastActor->UnHighlightActor();
+			
+		}
+		else // Both actors are valid
+		{
+			if (LastActor != ThisActor)
+			{
+				// Case D
+				LastActor->UnHighlightActor();
+				ThisActor->HighlightActor();
+				
+			}
+			else
+			{
+				// Case E - do nothing
+			}
+		}
+	}
+}
+
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2d InputAxisVector = InputActionValue.Get<FVector2d>();
@@ -52,3 +121,4 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
 }
+
