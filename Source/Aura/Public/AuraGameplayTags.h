@@ -41,6 +41,8 @@ static const FAuraGameplayTags& Get(){ return GameplayTags;}
  FGameplayTag InputTag_4;
 
  FGameplayTag Damage;
+
+ FGameplayTag Effects_HitReact;
 protected:
 
 private:
