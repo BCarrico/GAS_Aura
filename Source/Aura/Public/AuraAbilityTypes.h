@@ -9,8 +9,8 @@ struct FAuraGameplayEffectContext : public FGameplayEffectContext
 	
 public:
 
-	bool isCriticalHit() const { return bIsCriticalHit;}
-	bool isBlockedHit() const {return bIsBlockedHit;}
+	bool IsCriticalHit() const { return bIsCriticalHit;}
+	bool IsBlockedHit() const {return bIsBlockedHit;}
 
 	void SetIsCriticalHit(bool bInIsCriticalHit) {bIsCriticalHit = bInIsCriticalHit;}
 	void SetIsBlockedHit(bool bInIsBlockedHit) {bIsBlockedHit = bInIsBlockedHit;}
