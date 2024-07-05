@@ -139,8 +139,7 @@ void USpellMenuWidgetController::SpellRowGlobePressed(const FGameplayTag& SlotTa
 	
 }
 
-void USpellMenuWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status,
-	const FGameplayTag& Slot, const FGameplayTag& PrevSlot)
+void USpellMenuWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status,const FGameplayTag& Slot, const FGameplayTag& PrevSlot)
 {
 	bWaitingForEquipSelection = false;
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
