@@ -32,12 +32,7 @@ static const FAuraGameplayTags& Get(){ return GameplayTags;}
  FGameplayTag Attributes_Secondary_ManaRegeneration;
  FGameplayTag Attributes_Secondary_MaxMana;
  FGameplayTag Attributes_Secondary_MaxHealth;
-
- FGameplayTag Attributes_Resistance_Fire;
- FGameplayTag Attributes_Resistance_Lightning;
- FGameplayTag Attributes_Resistance_Arcane;
- FGameplayTag Attributes_Resistance_Physical;
-
+ 
 FGameplayTag Attributes_Meta_IncomingXP;
  
  FGameplayTag InputTag_LMB;
@@ -55,6 +50,16 @@ FGameplayTag Attributes_Meta_IncomingXP;
  FGameplayTag Damage_Arcane;
  FGameplayTag Damage_Physical;
 
+ FGameplayTag Attributes_Resistance_Fire;
+ FGameplayTag Attributes_Resistance_Lightning;
+ FGameplayTag Attributes_Resistance_Arcane;
+ FGameplayTag Attributes_Resistance_Physical;
+
+ FGameplayTag Debuff_Burn;
+ FGameplayTag Debuff_Stun;
+ FGameplayTag Debuff_Arcane;
+ FGameplayTag Debuff_Physical;
+ 
  FGameplayTag Abilities_None;
  FGameplayTag Abilities_Attack;
  FGameplayTag Abilities_Summon;
@@ -85,8 +90,8 @@ FGameplayTag Attributes_Meta_IncomingXP;
  FGameplayTag Montage_Attack_3;
  FGameplayTag Montage_Attack_4;
  
- 
  TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
+ TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;
  
  FGameplayTag Effects_HitReact;
 
