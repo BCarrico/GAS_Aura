@@ -97,8 +97,8 @@ void UExecCalc_Damage::DetermineDebuff(const FGameplayEffectCustomExecutionParam
 				const float DebuffFrequency = Spec.GetSetByCallerMagnitude(GameplayTags.Debuff_Frequency, false, -1.f);
 				
 				UAuraAbilitySystemLibrary::SetDebuffDamage(ContextHandle, DebuffDamage);
-				UAuraAbilitySystemLibrary::SetDebuffDamage(ContextHandle, DebuffDuration);
-				UAuraAbilitySystemLibrary::SetDebuffDamage(ContextHandle, DebuffFrequency);
+				UAuraAbilitySystemLibrary::SetDebuffDuration(ContextHandle, DebuffDuration);
+				UAuraAbilitySystemLibrary::SetDebuffFrequency(ContextHandle, DebuffFrequency);
 			}
 		}
 	}
