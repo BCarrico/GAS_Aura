@@ -16,6 +16,7 @@ class UInputMappingContext;
 class UInputAction;
 class IEnemyInterface;
 class UAuraAbilitySystemComponent;
+class UNiagaraSystem;
 /**
  * 
  */
@@ -82,4 +83,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UNiagaraSystem> ClickNiagaraSystem;
 };
