@@ -2,6 +2,8 @@
 
 
 #include "AbilitySystem/Abilities/AuraBeamSpell.h"
+
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "GameFramework/Character.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -49,5 +51,21 @@ void UAuraBeamSpell::TraceFirstTarget(const FVector& BeamTargetLocation)
 			}
 		};
 	}
+	
+}
+
+void UAuraBeamSpell::StoreAdditionalTargets(TArray<AActor*>& OutAdditionalTargets)
+{
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(GetAvatarActorFromActorInfo());
+	ActorsToIgnore.Add(MouseHitActor);
+	TArray<AActor*> OverlappingActors;
+	
+	UAuraAbilitySystemLibrary::GetLivePlayersWithinRadius(GetAvatarActorFromActorInfo(), OverlappingActors, ActorsToIgnore, 850.f /*Could be curve table or parameterized*/, MouseHitActor->GetActorLocation());
+
+	int32 NumAdditionalTargets = 5;
+	//int32 NumAdditionalTargets = FMath::Min(GetAbilityLevel() - 1, MaxNumShockTargets);
+
+	UAuraAbilitySystemLibrary::GetClosestTargets(NumAdditionalTargets, OverlappingActors, OutAdditionalTargets, MouseHitActor->GetActorLocation());
 	
 }
