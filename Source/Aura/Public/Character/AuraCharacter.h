@@ -39,6 +39,8 @@ public:
 	virtual int32 FindLevelForXP_Implementation(const int32 InXP) const override;
 	virtual int32 GetSpellPoints_Implementation() const override;
 	virtual int32 GetAttributePoints_Implementation() const override;
+	virtual void ShowMagicCircle_Implementation(UMaterialInterface* DecalMaterial) override;
+	virtual void HideMagicCircle_Implementation() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UNiagaraComponent> LevelUpNiagaraComponent;
