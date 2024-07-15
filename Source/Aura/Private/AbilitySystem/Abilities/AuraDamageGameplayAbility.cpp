@@ -5,7 +5,7 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
-#include "Systems/MovieSceneComponentMobilitySystem.h"
+
 
 void UAuraDamageGameplayAbility::CauseDamage(AActor* TargetActor)
 {
