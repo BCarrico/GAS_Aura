@@ -111,6 +111,7 @@ FGameplayTag Attributes_Meta_IncomingXP;
  FGameplayTag Player_Block_InputReleased;
  FGameplayTag Player_Block_CursorTrace;
 
+ FGameplayTag GameplayCue_FireBlast;
  
 protected:
 
